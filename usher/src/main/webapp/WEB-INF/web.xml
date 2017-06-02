@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<web-app
+        version="2.5"
+        xmlns="http://java.sun.com/xml/ns/javaee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+        
+ <!-- Filters -->   
+
+  <filter>
+    <filter-name>ObjectifyFilter</filter-name>
+    <filter-class>com.googlecode.objectify.ObjectifyFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>ObjectifyFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <listener>
+    <listener-class>ai.usher.OfyHelper</listener-class>
+  </listener>
+  
+  <filter>
+    <filter-name>AuthFilter</filter-name>
+    <filter-class>ai.usher.AuthFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>AuthFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+    
+<!-- Servlets -->
+
+  <servlet>
+    <servlet-name>GoogleOauth</servlet-name>
+    <servlet-class>ai.usher.servlets.GoogleServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GoogleOauth</servlet-name>
+    <url-pattern>/google/*</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>Account</servlet-name>
+    <servlet-class>ai.usher.servlets.AccountServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Account</servlet-name>
+    <url-pattern>/account/*</url-pattern>
+  </servlet-mapping>
+
+<!-- Other -->
+  
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+    
+</web-app>
